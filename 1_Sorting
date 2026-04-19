@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	cout<<"\nSize Of Array\n";
+	int size,*array;
+	int outerLoop=0,innerLoop=0,comparison=0,swaps=0;
+	cin>>size;
+	array=new int[size];
+
+	cout<<"\nEnter ELements Of Array\n";
+
+	for(int i=0; i<size; i++) {
+		cin>>array[i];
+	}
+
+//Bubble Sort
+	cout<<"\n\n\nBUBBLE SORT\n";
+	for(int i=0; i<size-1; i++) {
+		outerLoop++;
+		for(int j=0; j<size-i-1; j++) {
+			innerLoop++;
+			comparison++;
+			if(array[j]>array[j+1]) {
+				swap(array[j],array[j+1]);
+				swaps++;
+			}
+		}
+	}
+	cout << "Sorted Array : ";
+	for(int i=0; i<size; i++)
+		cout<<array[i]<<" ";
+
+	cout<<endl;
+	cout<<"outerLoopCount : "<<outerLoop<<endl;
+	cout<<"innerLoopCount : "<<innerLoop<<endl;
+	cout<<"Comparisons : "<<comparison<<endl;
+	cout<<"Swaps : "<<swaps<<endl;
+
+
+
+//Selection SORT
+	cout<<"\n\nSelection SORT\n";
+	for(int i=0; i<size-1; i++) {
+		int min=i;
+		outerLoop++;
+		for(int j=i+1; j<size; j++) {
+			innerLoop++;
+			comparison++;
+
+			if(array[min]>array[j]) {
+				min=j;
+				swap(array[j],array[min]);
+				swaps++;
+			}
+		}
+	}
+	cout << "Sorted Array : ";
+	for(int i=0; i<size; i++)
+		cout<<array[i]<<" ";
+
+	cout<<endl;
+	cout<<"outerLoopCount : "<<outerLoop<<endl;
+	cout<<"innerLoopCount : "<<innerLoop<<endl;
+	cout<<"Comparisons : "<<comparison<<endl;
+    cout<<"Swaps : "<<swaps<<endl;
+
+//Insertion SORT
+	    cout<<"\n\nInsertion SORT\n";
+	for(int i=0; i<size-1; i++) {
+		int key=array[i];
+		int j=i-1;
+		outerLoop++;
+		while(j>=0 && array[j]>key) {
+		    innerLoop++;
+		    comparison++;
+			array[j+1]=array[j];
+			swaps++;
+			j--;
+		}
+		array[j+1]=key;
+	}
+
+cout<<"Sorted Array : ";
+for(int i=0; i<size; i++)
+	cout<<array[i]<<" ";
+
+cout<<endl;
+cout<<"outerLoopCount : "<<outerLoop<<endl;
+cout<<"innerLoopCount : "<<innerLoop<<endl;
+cout<<"Comparisons : "<<comparison<<endl;
+cout<<"Swaps : "<<swaps<<endl;
+
+}
