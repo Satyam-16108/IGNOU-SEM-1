@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Web Form</title>
+    <style>
+        /* Basic reset and centering */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-reset {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <!-- 1. CHANGE THIS HEADING BASED ON THE EXAM QUESTION -->
+    <h2>Registration Form</h2>
+    
+    <form id="universalForm" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age (must be positive):</label>
+            <input type="number" id="age" name="age">
+        </div>
+
+        <div class="form-group">
+            <!-- 2. CHANGE THIS LABEL & OPTIONS BASED ON THE EXAM QUESTION -->
+            <label for="category">Select Option (Course/Room/Doctor):</label>
+            <select id="category" name="category">
+                <option value="">--Select--</option>
+                <option value="Option 1">Option 1</option>
+                <option value="Option 2">Option 2</option>
+                <option value="Option 3">Option 3</option>
+            </select>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn-submit">Submit</button>
+            <button type="reset" class="btn-reset">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        // Fetch values from the form inputs
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let age = document.getElementById("age").value.trim();
+        let category = document.getElementById("category").value.trim();
+
+        // Condition A: Ensure no field is left blank
+        if (name === "" || email === "" || age === "" || category === "") {
+            alert("Error: All fields are mandatory. Please fill out the entire form.");
+            return false; // Returns false to stop form submission
+        }
+
+        // Condition B: Validate that age is a positive number
+        if (isNaN(age) || age <= 0) {
+            alert("Error: Age must be a positive number.");
+            return false; // Returns false to stop form submission
+        }
+
+        // If validation passes
+        alert("Success! Form data is valid and ready to be submitted.");
+        return true; 
+    }
+</script>
+
+</body>
+</html>
+
