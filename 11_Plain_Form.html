@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Form</title>
+</head>
+<body>
+
+    <!-- 1. Change heading based on question (e.g., Doctor Appointment, Room Booking) -->
+    <h2>Registration Form</h2>
+    
+    <form onsubmit="return validateForm()">
+        
+        <label>Full Name:</label><br>
+        <input type="text" id="name"><br><br>
+
+        <label>Email Address:</label><br>
+        <input type="text" id="email"><br><br>
+
+        <label>Age:</label><br>
+        <input type="text" id="age"><br><br>
+
+        <!-- 2. Change label and options based on question -->
+        <label>Select Category:</label><br>
+        <select id="category">
+            <option value="">--Select--</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+        </select><br><br>
+
+        <!-- 3. Submit and Reset Buttons -->
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+    <script>
+        function validateForm() {
+            // Get values from inputs
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var age = document.getElementById("age").value.trim();
+            var category = document.getElementById("category").value.trim();
+
+            // Condition A: Check if any field is empty
+            if (name == "" || email == "" || age == "" || category == "") {
+                alert("Error: All fields are required. Please fill them out.");
+                return false; // Stops form submission
+            }
+
+            // Condition B: Check if age is a positive number
+            if (isNaN(age) || age <= 0) {
+                alert("Error: Age must be a positive number.");
+                return false; // Stops form submission
+            }
+
+            // If everything is correct
+            alert("Success! Form is valid.");
+            return true; 
+        }
+    </script>
+
+</body>
+</html>
+
