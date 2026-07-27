@@ -1,3 +1,23 @@
+// 1. CONNECT
+$conn = mysqli_connect("localhost","root","","company");
+
+// 2. GET
+$name = $_POST["name"];
+$email = $_POST["email"];
+$rating = $_POST["rating"];
+
+// 3. MAKE SQL
+$sql = "INSERT INTO survey VALUES('$name','$email','$rating')";
+
+// 4. RUN SQL
+mysqli_query($conn,$sql);
+
+// 5. CLOSE
+mysqli_close($conn);
+
+
+
+
 <html>
 <head>
 <title>Customer Survey</title>
@@ -56,29 +76,6 @@ Rating:
 </html>
 
 
-
-<?php
-
-$conn = mysqli_connect("localhost", "root", "", "company");
-
-$name = $_POST["name"];
-$email = $_POST["email"];
-$rating = $_POST["rating"];
-
-$sql = "INSERT INTO survey VALUES('$name','$email','$rating')";
-
-if(mysqli_query($conn, $sql))
-{
-    echo "Data inserted successfully";
-}
-else
-{
-    echo "Error";
-}
-
-mysqli_close($conn);
-
-?>
 
 
 
