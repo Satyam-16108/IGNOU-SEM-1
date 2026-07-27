@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Satisfaction Survey</title>
+
+    <script>
+        function validateForm()
+        {
+            var name = document.forms["survey"]["name"].value;
+            var email = document.forms["survey"]["email"].value;
+            var rating = document.forms["survey"]["rating"].value;
+            var comments = document.forms["survey"]["comments"].value;
+
+            if(name == "")
+            {
+                alert("Please enter your name");
+                return false;
+            }
+
+            if(email == "")
+            {
+                alert("Please enter your email");
+                return false;
+            }
+
+            if(rating == "")
+            {
+                alert("Please select a rating");
+                return false;
+            }
+
+            if(comments == "")
+            {
+                alert("Please enter comments");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+<h2>Customer Satisfaction Survey</h2>
+
+<form name="survey"
+      action="submit.php"
+      method="post"
+      onsubmit="return validateForm()">
+
+    Name:
+    <input type="text" name="name">
+    <br><br>
+
+    Email:
+    <input type="email" name="email">
+    <br><br>
+
+    Rating:
+    <select name="rating">
+        <option value="">Select</option>
+        <option value="Excellent">Excellent</option>
+        <option value="Good">Good</option>
+        <option value="Average">Average</option>
+        <option value="Poor">Poor</option>
+    </select>
+    <br><br>
+
+    Comments:
+    <textarea name="comments"></textarea>
+    <br><br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+
+</form>
+
+</body>
+</html>
+
+
+
+
+
+<?php
+
+$conn = mysqli_connect("localhost", "root", "", "company");
+
+$name = $_POST["name"];
+$email = $_POST["email"];
+$rating = $_POST["rating"];
+$comments = $_POST["comments"];
+
+$sql = "INSERT INTO survey(name, email, rating, comments)
+        VALUES('$name', '$email', '$rating', '$comments')";
+
+if(mysqli_query($conn, $sql))
+{
+    echo "Survey submitted successfully";
+}
+else
+{
+    echo "Error";
+}
+
+mysqli_close($conn);
+
+?>
+
+
+CREATE DATABASE company;
+
+USE company;
+
+CREATE TABLE survey
+(
+    name VARCHAR(50),
+    email VARCHAR(50),
+    rating VARCHAR(20),
+    comments VARCHAR(200)
+);
+
+
